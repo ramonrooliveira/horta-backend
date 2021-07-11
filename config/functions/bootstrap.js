@@ -155,6 +155,8 @@ async function importSeedData() {
   await importGlobal();
 }
 
+require('dotenv').config({ path: require('find-config')('.env') })
+
 module.exports = async () => {
   const shouldImportSeedData = await isFirstRun();
 
