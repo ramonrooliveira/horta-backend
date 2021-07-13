@@ -41,6 +41,49 @@ type UserPermissionsPasswordPayload {
   ok: Boolean!
 }
 
+type About {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  image: UploadFile
+  button: ComponentSharedButton
+  text: String
+  title: String
+  published_at: DateTime
+}
+
+input AboutInput {
+  image: ID
+  button: ComponentSharedButtonInput
+  text: String
+  title: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editAboutInput {
+  image: ID
+  button: editComponentSharedButtonInput
+  text: String
+  title: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input updateAboutInput {
+  data: editAboutInput
+}
+
+type updateAboutPayload {
+  about: About
+}
+
+type deleteAboutPayload {
+  about: About
+}
+
 enum ENUM_ARTICLE_STATUS {
   draft
   published
@@ -292,6 +335,43 @@ input deleteCategoryInput {
 
 type deleteCategoryPayload {
   category: Category
+}
+
+type Contact {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  image: UploadFile
+  contactBlock: ComponentContactContactBlock
+  published_at: DateTime
+}
+
+input ContactInput {
+  image: ID
+  contactBlock: ComponentContactContactBlockInput
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editContactInput {
+  image: ID
+  contactBlock: editComponentContactContactBlockInput
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input updateContactInput {
+  data: editContactInput
+}
+
+type updateContactPayload {
+  contact: Contact
+}
+
+type deleteContactPayload {
+  contact: Contact
 }
 
 type Footer {
@@ -1139,6 +1219,35 @@ type deleteUserPayload {
   user: UsersPermissionsUser
 }
 
+type ComponentContactContactBlock {
+  id: ID!
+  title: String!
+  addressFirstLine: String
+  addressSecondLine: String
+  phones: String
+  email: String
+  instagram: String
+}
+
+input ComponentContactContactBlockInput {
+  title: String!
+  addressFirstLine: String
+  addressSecondLine: String
+  phones: String
+  email: String
+  instagram: String
+}
+
+input editComponentContactContactBlockInput {
+  id: ID
+  title: String
+  addressFirstLine: String
+  addressSecondLine: String
+  phones: String
+  email: String
+  instagram: String
+}
+
 type ComponentPaginaLink {
   id: ID!
   label: String!
@@ -1171,6 +1280,23 @@ input editComponentSectionsHeroInput {
   id: ID
   title: String
   subtitle: String
+}
+
+type ComponentSharedButton {
+  id: ID!
+  label: String
+  url: String
+}
+
+input ComponentSharedButtonInput {
+  label: String
+  url: String
+}
+
+input editComponentSharedButtonInput {
+  id: ID
+  label: String
+  url: String
 }
 
 type ComponentSharedLink {
@@ -1210,7 +1336,7 @@ input editComponentSharedSeoInput {
   shareImage: ID
 }
 
-union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Article | ArticleConnection | ArticleAggregator | ArticleGroupBy | ArticleConnectionId | ArticleConnectionCreated_at | ArticleConnectionUpdated_at | ArticleConnectionTitle | ArticleConnectionDescription | ArticleConnectionContent | ArticleConnectionPublishedAt | ArticleConnectionStatus | ArticleConnectionSlug | ArticleConnectionCategory | ArticleConnectionImage | ArticleConnectionAuthor | createArticlePayload | updateArticlePayload | deleteArticlePayload | Category | CategoryConnection | CategoryAggregator | CategoryGroupBy | CategoryConnectionId | CategoryConnectionCreated_at | CategoryConnectionUpdated_at | CategoryConnectionName | CategoryConnectionSlug | createCategoryPayload | updateCategoryPayload | deleteCategoryPayload | Footer | updateFooterPayload | deleteFooterPayload | Global | updateGlobalPayload | deleteGlobalPayload | Header | updateHeaderPayload | deleteHeaderPayload | Homepage | updateHomepagePayload | deleteHomepagePayload | Projects | ProjectsConnection | ProjectsAggregator | ProjectsGroupBy | ProjectsConnectionId | ProjectsConnectionCreated_at | ProjectsConnectionUpdated_at | ProjectsConnectionTitle | ProjectsConnectionDescription | ProjectsConnectionCover | ProjectsConnectionSlug | ProjectsConnectionPublished_at | createProjectPayload | updateProjectPayload | deleteProjectPayload | Writer | WriterConnection | WriterAggregator | WriterGroupBy | WriterConnectionId | WriterConnectionCreated_at | WriterConnectionUpdated_at | WriterConnectionName | WriterConnectionPicture | WriterConnectionEmail | createWriterPayload | updateWriterPayload | deleteWriterPayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_at | UploadFileConnectionUpdated_at | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | deleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_at | UsersPermissionsUserConnectionUpdated_at | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | createUserPayload | updateUserPayload | deleteUserPayload | ComponentPaginaLink | ComponentSectionsHero | ComponentSharedLink | ComponentSharedSeo
+union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | About | updateAboutPayload | deleteAboutPayload | Article | ArticleConnection | ArticleAggregator | ArticleGroupBy | ArticleConnectionId | ArticleConnectionCreated_at | ArticleConnectionUpdated_at | ArticleConnectionTitle | ArticleConnectionDescription | ArticleConnectionContent | ArticleConnectionPublishedAt | ArticleConnectionStatus | ArticleConnectionSlug | ArticleConnectionCategory | ArticleConnectionImage | ArticleConnectionAuthor | createArticlePayload | updateArticlePayload | deleteArticlePayload | Category | CategoryConnection | CategoryAggregator | CategoryGroupBy | CategoryConnectionId | CategoryConnectionCreated_at | CategoryConnectionUpdated_at | CategoryConnectionName | CategoryConnectionSlug | createCategoryPayload | updateCategoryPayload | deleteCategoryPayload | Contact | updateContactPayload | deleteContactPayload | Footer | updateFooterPayload | deleteFooterPayload | Global | updateGlobalPayload | deleteGlobalPayload | Header | updateHeaderPayload | deleteHeaderPayload | Homepage | updateHomepagePayload | deleteHomepagePayload | Projects | ProjectsConnection | ProjectsAggregator | ProjectsGroupBy | ProjectsConnectionId | ProjectsConnectionCreated_at | ProjectsConnectionUpdated_at | ProjectsConnectionTitle | ProjectsConnectionDescription | ProjectsConnectionCover | ProjectsConnectionSlug | ProjectsConnectionPublished_at | createProjectPayload | updateProjectPayload | deleteProjectPayload | Writer | WriterConnection | WriterAggregator | WriterGroupBy | WriterConnectionId | WriterConnectionCreated_at | WriterConnectionUpdated_at | WriterConnectionName | WriterConnectionPicture | WriterConnectionEmail | createWriterPayload | updateWriterPayload | deleteWriterPayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_at | UploadFileConnectionUpdated_at | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | deleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_at | UsersPermissionsUserConnectionUpdated_at | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | createUserPayload | updateUserPayload | deleteUserPayload | ComponentContactContactBlock | ComponentPaginaLink | ComponentSectionsHero | ComponentSharedButton | ComponentSharedLink | ComponentSharedSeo
 
 input InputID {
   id: ID!
@@ -1229,12 +1355,14 @@ type AdminUser {
 }
 
 type Query {
+  about(publicationState: PublicationState): About
   article(id: ID!, publicationState: PublicationState): Article
   articles(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Article]
   articlesConnection(sort: String, limit: Int, start: Int, where: JSON): ArticleConnection
   category(id: ID!, publicationState: PublicationState): Category
   categories(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Category]
   categoriesConnection(sort: String, limit: Int, start: Int, where: JSON): CategoryConnection
+  contact(publicationState: PublicationState): Contact
   footer(publicationState: PublicationState): Footer
   global(publicationState: PublicationState): Global
   header(publicationState: PublicationState): Header
@@ -1261,12 +1389,16 @@ type Query {
 }
 
 type Mutation {
+  updateAbout(input: updateAboutInput): updateAboutPayload
+  deleteAbout: deleteAboutPayload
   createArticle(input: createArticleInput): createArticlePayload
   updateArticle(input: updateArticleInput): updateArticlePayload
   deleteArticle(input: deleteArticleInput): deleteArticlePayload
   createCategory(input: createCategoryInput): createCategoryPayload
   updateCategory(input: updateCategoryInput): updateCategoryPayload
   deleteCategory(input: deleteCategoryInput): deleteCategoryPayload
+  updateContact(input: updateContactInput): updateContactPayload
+  deleteContact: deleteContactPayload
   updateFooter(input: updateFooterInput): updateFooterPayload
   deleteFooter: deleteFooterPayload
   updateGlobal(input: updateGlobalInput): updateGlobalPayload

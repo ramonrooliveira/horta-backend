@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_contact_contact_blocks",
+  "info": {
+    "name": "contactBlock",
+    "icon": "phone-alt"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "addressFirstLine": {
+      "type": "string"
+    },
+    "addressSecondLine": {
+      "type": "string"
+    },
+    "phones": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "instagram": {
+      "type": "string"
+    }
+  }
+}
